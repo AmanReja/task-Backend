@@ -18,7 +18,7 @@ const signup = async (req, res) => {
       adminpass: hashedpass,
 
       adminimage: adminimage,
-      adminimageid: adminimageid,
+      adminimageid: adminimageid
     });
 
     if (newAdmin) {
@@ -28,7 +28,7 @@ const signup = async (req, res) => {
         id: newAdmin._id,
         adminemail: newAdmin.adminemail,
 
-        adminimage: newAdmin.adminimage,
+        adminimage: newAdmin.adminimage
       });
     } else {
       res.status(400).json({ message: "invalid admin" });
@@ -60,11 +60,27 @@ const login = async (req, res) => {
       _id: admin._id,
       fullname: admin.fullname,
       adminemail: admin.adminemail,
-      adminimage: admin.adminimage,
+      adminimage: admin.adminimage
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+const checkauth = async (req, res) => {
+  try {
+    res.status(200).json(req.admin);
+  } catch (error) {
+    console.log("error in checkauth", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+const logout = (req, res) => {
+  try {
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json("logout successfull");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-module.exports = { signup, login };
+module.exports = { signup, login, checkauth, logout };
