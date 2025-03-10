@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const cookies = require("cookie-parser");
 const port = 5000;
 const app = express();
 app.use(express.json());
@@ -27,6 +28,7 @@ try {
 }
 
 app.use(cors({ origin: "*" }));
+app.use(cookies());
 
 const authRoutes = require("./routes/auth");
 app.use("/admin", authRoutes);
