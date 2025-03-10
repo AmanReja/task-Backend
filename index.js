@@ -27,7 +27,15 @@ try {
   console.log("error in database connection", error);
 }
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://task-frontend-three-liard.vercel.app"
+    ], // ✅ Allow local & Vercel frontend
+    credentials: true // ✅ Allow cookies & authentication tokens
+  })
+);
 app.use(cookieParser());
 
 const authRoutes = require("./routes/auth");
