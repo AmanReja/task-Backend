@@ -4,7 +4,6 @@ const dotenv = require("dotenv").config();
 const cors = require("cors");
 const port = 5000;
 const app = express();
-const cookieParser = require("cookie-parser");
 app.use(express.json());
 const mongostring = process.env.DATABASE_URL;
 mongoose.connect(mongostring);
@@ -28,7 +27,6 @@ try {
 }
 
 app.use(cors({ origin: "*" }));
-app.use(cookieParser());
 
 const authRoutes = require("./routes/auth");
 app.use("/admin", authRoutes);

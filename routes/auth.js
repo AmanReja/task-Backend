@@ -12,7 +12,7 @@ const { secureRoutes } = require("../middleware/secureRoutes");
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);
-router.post("/assign", secureRoutes, assign);
+router.post("/assign", assign);
 router.get("/checkauth", secureRoutes, checkauth);
 
 module.exports = router;
