@@ -36,6 +36,7 @@ app.use(
     credentials: true // ✅ Allow cookies & authentication tokens
   })
 );
+app.options("*", cors());
 app.use(cookieParser());
 
 const authRoutes = require("./routes/auth");
