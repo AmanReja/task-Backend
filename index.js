@@ -27,12 +27,18 @@ try {
   console.log("error in database connection", error);
 }
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://task-frontend-three-liard.vercel.app"
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your frontend URL
-    credentials: true // ✅ This allows cookies to be sent
+    origin: process.env.NODE_ENV === "development" ? "*" : allowedOrigins,
+    credentials: true
   })
 );
+
 app.use(cookies());
 
 const authRoutes = require("./routes/auth");
