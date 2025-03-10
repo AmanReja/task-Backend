@@ -27,15 +27,7 @@ try {
   console.log("error in database connection", error);
 }
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true
-  })
-);
-
-app.options("*", cors());
-
+app.use(cors({ origin: "*" }));
 app.use(cookieParser());
 
 const authRoutes = require("./routes/auth");
