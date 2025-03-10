@@ -28,14 +28,22 @@ try {
 }
 
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://task-frontend-three-liard.vercel.app"
+  "http://localhost:5173", // ✅ Dev (Localhost)
+  "https://your-frontend-url.vercel.app" // ✅ Prod (Vercel)
 ];
 
 app.use(
   cors({
-    origin: process.env.NODE_ENV === "development" ? "*" : allowedOrigins,
-    credentials: true
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true); // ✅ Allow only defined origins
+      } else {
+        callback(new Error("Not allowed by CORS")); // ❌ Block other origins
+      }
+    },
+    credentials: true, // ✅ Allow cookies & authentication
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // ✅ Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"] // ✅ Allowed headers
   })
 );
 
