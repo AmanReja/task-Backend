@@ -28,25 +28,18 @@ try {
 }
 
 const allowedOrigins = [
-  "http://localhost:5173", // ✅ Dev (Localhost)
-  "https://your-frontend-url.vercel.app" // ✅ Prod (Vercel)
+  "http://localhost:5173", // ✅ Development
+  "https://your-frontend-url.vercel.app" // ✅ Production (Replace with your Vercel URL)
 ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // ✅ Allow only defined origins
-      } else {
-        callback(new Error("Not allowed by CORS")); // ❌ Block other origins
-      }
-    },
-    credentials: true, // ✅ Allow cookies & authentication
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // ✅ Allowed HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"] // ✅ Allowed headers
+    origin: allowedOrigins, // ✅ Allow specific frontend origins
+    credentials: true, // ✅ Required for cookies & authentication
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // ✅ Allow HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"] // ✅ Allow necessary headers
   })
 );
-
 app.use(cookies());
 
 const authRoutes = require("./routes/auth");
