@@ -28,16 +28,16 @@ try {
 }
 
 const allowedOrigins = [
-  "http://localhost:5173", // ✅ Development
-  "https://task-frontend-three-liard.vercel.app" // ✅ Production (Replace with your Vercel URL)
+  "http://localhost:5173",
+  "https://task-frontend-three-liard.vercel.app"
 ];
 
 app.use(
   cors({
-    origin: allowedOrigins, // ✅ Allow specific frontend origins
-    credentials: true, // ✅ Required for cookies & authentication
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // ✅ Allow HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"] // ✅ Allow necessary headers
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 app.use(cookies());
