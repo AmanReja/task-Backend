@@ -29,7 +29,7 @@ try {
 
 const allowedOrigins = [
   "http://localhost:5173", // ✅ Development
-  "https://your-frontend-url.vercel.app" // ✅ Production (Replace with your Vercel URL)
+  "https://task-frontend-three-liard.vercel.app" // ✅ Production (Replace with your Vercel URL)
 ];
 
 app.use(
