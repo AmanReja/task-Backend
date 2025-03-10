@@ -27,7 +27,12 @@ try {
   console.log("error in database connection", error);
 }
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Your frontend URL
+    credentials: true // ✅ This allows cookies to be sent
+  })
+);
 app.use(cookies());
 
 const authRoutes = require("./routes/auth");
