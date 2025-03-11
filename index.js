@@ -43,10 +43,10 @@ app.use(
 app.use(cookies());
 
 const authRoutes = require("./routes/auth");
-app.use("/admin", authRoutes);
+app.use("/api/admin", authRoutes);
 
 const user_controller = require("./controllers/user_controller");
-app.use("/user", user_controller);
+app.use("/api/user", user_controller);
 
 app.listen(port, () => {
   console.log(`server is running at ${port}`);
