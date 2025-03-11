@@ -8,10 +8,10 @@ const generateToken = (adminid, res) => {
   });
 
   res.cookie("jwt", token, {
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     httpOnly: true,
-    secure: true,
-    secure: process.env.NODE_ENV !== "development"
+    secure: process.env.NODE_ENV !== "development", // ✅ Secure in production
+    sameSite: "strict" // ✅ Prevents CSRF attacks
   });
 
   return token;
