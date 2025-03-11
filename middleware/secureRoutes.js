@@ -3,7 +3,7 @@ const Admin = require("../models/adminSchema");
 const dotenv = require("dotenv").config();
 
 const secureRoutes = async (req, res, next) => {
-  const token = req.cookies.jwt;
+  const token = req.cookies.jwt3;
 
   console.log(8, dotenv);
 
