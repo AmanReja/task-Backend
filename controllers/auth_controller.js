@@ -54,13 +54,14 @@ const login = async (req, res) => {
     if (!ispassCorrect) {
       return res.status(500).json({ message: "invalid credentials" });
     }
-    generateToken(admin._id, res);
+    const token = generateToken(admin._id, res);
 
     res.status(200).json({
       _id: admin._id,
       fullname: admin.fullname,
       adminemail: admin.adminemail,
-      adminimage: admin.adminimage
+      adminimage: admin.adminimage,
+      token: token
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
